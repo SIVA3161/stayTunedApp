@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <TextView
+        android:id="@+id/titleRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/title_register"
+        android:textFontWeight="700"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/descRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/desc_register"
+        android:textFontWeight="300"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/titleRegister"
+        app:layout_constraintTop_toBottomOf="@+id/titleRegister" />
+
+
+
+    <TextView
+        android:id="@+id/stvFullNameEt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="57dp"
+        android:text="@string/fullname"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textFontWeight="300"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/descRegister"
+        app:layout_constraintTop_toBottomOf="@+id/descRegister" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/dtvFullnameRegisterEt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textColor="@color/white"
+        android:background="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintTop_toBottomOf="@+id/stvFullNameEt" />
+
+    <TextView
+        android:id="@+id/stvEmailEt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/email"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textFontWeight="300"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/descRegister"
+        app:layout_constraintTop_toBottomOf="@+id/dtvFullnameRegisterEt" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/dtvEmailRegisterEt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textColor="@color/white"
+        android:background="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintTop_toBottomOf="@+id/stvEmailEt" />
+
+    <TextView
+        android:id="@+id/stvPwdEt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/password"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/dtvEmailRegisterEt"
+        app:layout_constraintTop_toBottomOf="@+id/dtvEmailRegisterEt" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/dtvPasswordLoginEt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:inputType="textPassword"
+        android:imeOptions="actionDone"
+        android:textColor="@color/white"
+        android:background="@color/grey"
+        android:drawableRight="@drawable/ic_eye_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintTop_toBottomOf="@+id/stvPwdEt" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="@string/already_have_an_account"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/dtvPasswordLoginEt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

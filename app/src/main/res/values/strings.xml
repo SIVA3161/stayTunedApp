@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">stayTuned</string>
+
+<!--    Login Scrn   -->
+    <string name="title_login">Login</string>
+    <string name="desc_login">Sign in to your account</string>
+
+    <!--    Signup Scrn   -->
+    <string name="title_register">Register</string>
+    <string name="desc_register">Create your account</string>
+    <string name="email">Email</string>
+    <string name="fullname">Fullname</string>
+
+    <string name="your_email">Your Email</string>
+    <string name="password">Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account, yet? \nRegister here</string>
+
+
 </resources>
