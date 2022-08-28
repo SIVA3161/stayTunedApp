@@ -10,36 +10,34 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.sivag.staytuned.MainActivity
 import com.sivag.staytuned.R
 import com.sivag.staytuned.base.BaseFragment
 import com.sivag.staytuned.database.RegisterDatabase
 import com.sivag.staytuned.database.RegisterRepository
 import com.sivag.staytuned.databinding.FragmentLoginBinding
-import com.sivag.staytuned.databinding.FragmentRegisterBinding
-import com.sivag.staytuned.extension.navigateTo
-import com.sivag.staytuned.extension.stackFragmentInActivity
-import com.sivag.staytuned.signup.RegisterFragment
-import com.sivag.staytuned.signup.RegisterViewModel
-import com.sivag.staytuned.signup.RegisterViewModelFactory
 import kotlinx.android.synthetic.main.item_login_layout.*
-import kotlinx.android.synthetic.main.item_register_layout.*
 
 /**
  * Created by Siva G Gurusamy on 26/Aug/2022
  * email : sivaguru3161@gmail.com
  */
+
+
 class LoginFragment : BaseFragment() {
 
     private lateinit var parentActivity : MainActivity
     private lateinit var binding: FragmentLoginBinding
     private lateinit var viewModel : LoginViewModel
+    private var navHostFragment : NavHostFragment? = null
+    private var navController : NavController? = null
 
-
+    //user data declarations
     private var userLoginEmail: String = ""
     private var userLoginPassword: String = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,6 +63,8 @@ class LoginFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         parentActivity = activity as MainActivity
 
+        navHostFragment = parentActivity.supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
+        navController = navHostFragment!!.navController
 
         getUserLoginCredentials()
 
@@ -77,22 +77,26 @@ class LoginFragment : BaseFragment() {
         viewModel.isGenuineUser.observe(viewLifecycleOwner, Observer { isGenuineUser ->
             if (isGenuineUser == true ) {
                 Toast.makeText(requireContext(), "Successfully Logged In..", Toast.LENGTH_LONG).show()
+                val navHostFragment = parentActivity.supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
+                val navController = navHostFragment.navController
+
+                navController.navigate(R.id.userDashboardFragment)
             }else {
                 Toast.makeText(requireContext(), "Invalid Credentials", Toast.LENGTH_LONG).show()
             }
         })
 
         notRegisteredBtn.setOnClickListener {
-            val navHostFragment = parentActivity.supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
-            val navController = navHostFragment.navController
-
-            navController.navigate(R.id.signUpFragment)
+            navController?.navigate(R.id.signUpFragment)
         }
 
+        titleLogin.setOnClickListener {
+            viewModel.deleteUserDBRequest()
+        }
 
     }
 
-    fun getUserLoginCredentials() {
+    private fun getUserLoginCredentials() {
         dtvEmailLoginEt.addTextChangedListener(loginTextWatcher)
         dtvPasswordLoginEt.addTextChangedListener(loginTextWatcher)
 
@@ -110,8 +114,8 @@ class LoginFragment : BaseFragment() {
 
     private val loginTextWatcher = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
-            userLoginEmail = dtvEmailLoginEt.text.toString()
-            userLoginPassword = dtvPasswordLoginEt.text.toString()
+            userLoginEmail = dtvEmailLoginEt.text.toString().trim()
+            userLoginPassword = dtvPasswordLoginEt.text.toString().trim()
         }
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -127,7 +131,7 @@ class LoginFragment : BaseFragment() {
     private fun loginFormValidation(): Boolean {
 
         return !userLoginEmail.isNullOrEmpty() ||
-                Patterns.EMAIL_ADDRESS.matcher(userLoginEmail).matches() || !userLoginPassword.isNullOrEmpty() || userLoginPassword.length > 6
+                Patterns.EMAIL_ADDRESS.matcher(userLoginEmail).matches() || !userLoginPassword.isNullOrEmpty() || !(userLoginPassword.length > 6)
     }
 
     companion object {

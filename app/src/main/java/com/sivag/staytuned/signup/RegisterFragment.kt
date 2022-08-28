@@ -9,10 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.sivag.staytuned.MainActivity
 import com.sivag.staytuned.R
@@ -33,6 +32,9 @@ class RegisterFragment : BaseFragment() {
     private lateinit var parentActivity : MainActivity
     private lateinit var binding: FragmentRegisterBinding
     private lateinit var viewModel : RegisterViewModel
+    private var navHostFragment : NavHostFragment? = null
+    private var navController : NavController? = null
+
 
     private var userFullName: String = ""
     private var userEmail: String = ""
@@ -63,6 +65,9 @@ class RegisterFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         parentActivity = activity as MainActivity
 
+        navHostFragment = parentActivity.supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
+        navController = navHostFragment!!.navController
+
         getUserEnteredData()
 
         viewModel.errorToastUsername.observe(viewLifecycleOwner, Observer { hasError->
@@ -78,19 +83,26 @@ class RegisterFragment : BaseFragment() {
 
         viewModel.isSuccessfulRegistration.observe(viewLifecycleOwner, Observer { isSuccessfulReg ->
             if (isSuccessfulReg == true) {
-                val navHostFragment = parentActivity.supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
-                val navController = navHostFragment.navController
-
-                navController.navigate(R.id.signUpFragment)
+                navController!!.navigate(R.id.loginFragment)
+                Toast.makeText(requireContext(),"Registration Successful! \nKindly login with your credentials",Toast.LENGTH_LONG).show()
             }
 
         })
 
+        viewModel.users.observe(viewLifecycleOwner,Observer {
+            println("List of registered Users : $it")
+        })
+
+
         btnAlreadyHaveAccount.setOnClickListener {
-            parentActivity.onBackPressed()
+            val navHostFragment = parentActivity.supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
+            val navController = navHostFragment.navController
+
+            navController.navigate(R.id.loginFragment)
         }
 
     }
+
 
     private fun getUserEnteredData() {
         dtvFullnameRegisterEt.addTextChangedListener(textWatcher)
@@ -112,9 +124,9 @@ class RegisterFragment : BaseFragment() {
 
     private val textWatcher = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
-            userFullName = dtvFullnameRegisterEt.text.toString()
-            userEmail = dtvEmailRegisterEt.text.toString()
-            userPassword = dtvPasswordRegisterEt.text.toString()
+            userFullName = dtvFullnameRegisterEt.text.toString().trim()
+            userEmail = dtvEmailRegisterEt.text.toString().trim()
+            userPassword = dtvPasswordRegisterEt.text.toString().trim()
         }
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

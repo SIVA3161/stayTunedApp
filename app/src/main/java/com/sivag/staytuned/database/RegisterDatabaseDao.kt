@@ -18,9 +18,9 @@ interface RegisterDatabaseDao {
 
     @Query("SELECT * FROM Register_user_table ORDER BY userId DESC")
     fun getAllUsers(): LiveData<List<RegisterEntity>>
-//
-//    @Query("DELETE FROM Register_user_table")
-//    suspend fun deleteAll(): Int
+
+    @Query("DELETE FROM Register_user_table")
+    suspend fun deleteAll(): Int
 
     @Query("SELECT * FROM Register_user_table WHERE user_email LIKE :userEmail")
     suspend fun getUserEmail(userEmail: String): RegisterEntity?

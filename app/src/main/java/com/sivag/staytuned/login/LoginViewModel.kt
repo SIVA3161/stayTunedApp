@@ -38,4 +38,10 @@ class LoginViewModel(private val repository: RegisterRepository) : ViewModel() {
         }
     }
 
+    fun deleteUserDBRequest() {
+        uiScope.launch {
+            repository.deleteAll()
+        }
+    }
+
 }
