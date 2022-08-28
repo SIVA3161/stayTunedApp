@@ -11,16 +11,11 @@ import java.lang.IllegalArgumentException
  * email : sivaguru3161@gmail.com
  */
 
-//
-//class LoginViewModelFactory(
-//    private  val repository: RegisterRepository,
-//    private val application: Application
-//): ViewModelProvider.Factory{
-//    @Suppress("Unchecked_cast")
-//    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-//        if(modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-//            return LoginViewModel(repository, application) as T
-//        }
-//        throw IllegalArgumentException("Unknown View Model Class")
-//    }
-//}
+class LoginViewModelFactory(private  val repository: RegisterRepository): ViewModelProvider.Factory{
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if(modelClass.isAssignableFrom(LoginViewModel::class.java)) {
+            return LoginViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown View Model Class")
+    }
+}

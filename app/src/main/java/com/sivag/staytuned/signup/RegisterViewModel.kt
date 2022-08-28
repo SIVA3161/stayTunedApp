@@ -27,6 +27,10 @@ class RegisterViewModel(private val repository: RegisterRepository) : ViewModel(
 
     var userDetailsLiveData = MutableLiveData<Array<RegisterEntity>>()
 
+    private val _isSuccessfulRegistration = MutableLiveData<Boolean>()
+    val isSuccessfulRegistration: LiveData<Boolean>
+        get() = _isSuccessfulRegistration
+
     private fun insert(user: RegisterEntity): Job = viewModelScope.launch {
         repository.insert(user)
     }
@@ -39,7 +43,8 @@ class RegisterViewModel(private val repository: RegisterRepository) : ViewModel(
                 _errorToastUsername.value = true
             } else {
                 insert(RegisterEntity(0,userFullName,userEmail, userPassword))
-                println("Sakthi:: All User's Database : ${repository.users.value.toString()}")
+//                println("Sakthi:: All User's Database : ${repository.users.value.toString()}")
+                _isSuccessfulRegistration.value = true
             }
         }
     }

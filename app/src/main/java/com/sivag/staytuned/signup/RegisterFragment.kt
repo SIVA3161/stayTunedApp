@@ -13,7 +13,9 @@ import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.sivag.staytuned.MainActivity
+import com.sivag.staytuned.R
 import com.sivag.staytuned.base.BaseFragment
 import com.sivag.staytuned.database.RegisterDatabase
 import com.sivag.staytuned.database.RegisterRepository
@@ -74,6 +76,19 @@ class RegisterFragment : BaseFragment() {
             Log.i("UserDetails","$it")
         })
 
+        viewModel.isSuccessfulRegistration.observe(viewLifecycleOwner, Observer { isSuccessfulReg ->
+            if (isSuccessfulReg == true) {
+                val navHostFragment = parentActivity.supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
+                val navController = navHostFragment.navController
+
+                navController.navigate(R.id.signUpFragment)
+            }
+
+        })
+
+        btnAlreadyHaveAccount.setOnClickListener {
+            parentActivity.onBackPressed()
+        }
 
     }
 

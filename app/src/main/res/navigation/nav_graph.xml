@@ -10,6 +10,9 @@
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_userDashboardFragment"
+            app:destination="@id/userDashboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -18,5 +21,12 @@
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_userDashboardFragment"
+            app:destination="@id/userDashboardFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userDashboardFragment"
+        android:name="com.sivag.staytuned.dashboard.UserDashboardFragment"
+        android:label="fragment_user_dashboard" />
 </navigation>

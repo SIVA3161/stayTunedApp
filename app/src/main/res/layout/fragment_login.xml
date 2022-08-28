@@ -48,6 +48,7 @@
             android:layout_height="60dp"
             android:text="@string/title_login"
             android:textColor="@color/white"
+            android:foreground="?attr/selectableItemBackground"
             android:background="@color/green"
             android:gravity="center"
             android:textSize="16sp"
