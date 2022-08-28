@@ -85,6 +85,8 @@ class RegisterFragment : BaseFragment() {
             if (isSuccessfulReg == true) {
                 navController!!.navigate(R.id.loginFragment)
                 Toast.makeText(requireContext(),"Registration Successful! \nKindly login with your credentials",Toast.LENGTH_LONG).show()
+            }else {
+                Toast.makeText(requireContext(),"Can't register",Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -117,7 +119,7 @@ class RegisterFragment : BaseFragment() {
                 else if (userEmail.isNullOrEmpty()) dtvEmailRegisterEt.error = getString(com.sivag.staytuned.R.string.empty_email)
                 else if (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) dtvEmailRegisterEt.error = getString(com.sivag.staytuned.R.string.invalid_email_address)
                 else if (userPassword.isNullOrEmpty()) dtvPasswordRegisterEt.error = getString(com.sivag.staytuned.R.string.empty_password)
-                else return@setOnClickListener
+                else Toast.makeText(requireContext(),"Error occured inside btn click",Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -141,8 +143,7 @@ class RegisterFragment : BaseFragment() {
 
     private fun formValidation(): Boolean {
 
-        return !userFullName.isNullOrEmpty() && !userEmail.isNullOrEmpty() &&
-                Patterns.EMAIL_ADDRESS.matcher(userEmail).matches() && !userPassword.isNullOrEmpty() && userPassword.length > 6
+        return !userFullName.isNullOrEmpty() && !userEmail.isNullOrEmpty() && !userPassword.isNullOrEmpty()
     }
 
     companion object {

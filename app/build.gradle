@@ -56,6 +56,8 @@ dependencies {
     def junitVersion = '4.13.2'
     def espressoVersion = '3.4.0'
     def androidxJunitVersion = '1.1.3'
+    def retrofit_version = '2.8.2'
+    def coil_img_lib_version = "2.1.0"
 
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.activity:activity-ktx:$activityVersion"
@@ -88,5 +90,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation ("io.coil-kt:coil:$coil_img_lib_version")
 
 }

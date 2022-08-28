@@ -2,11 +2,23 @@ package com.sivag.staytuned.dashboard
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.sivag.staytuned.Constants
 import com.sivag.staytuned.base.BaseFragment
+import com.sivag.staytuned.data.Api
+import com.sivag.staytuned.data.model.ContactsModel
+import com.sivag.staytuned.data.model.Data
 import com.sivag.staytuned.databinding.FragmentUserdashboardBinding
+import kotlinx.android.synthetic.main.fragment_userdashboard.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 /**
@@ -19,6 +31,10 @@ class UserDashboardFragment : BaseFragment() {
 
     private lateinit var binding: FragmentUserdashboardBinding
 
+    lateinit var listContactsAdapter: ListContactsAdapter
+    lateinit var linearLayoutManager: LinearLayoutManager
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,7 +44,44 @@ class UserDashboardFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
+        rvContacts.setHasFixedSize(false)
+        linearLayoutManager = LinearLayoutManager(requireContext())
+        rvContacts.layoutManager = linearLayoutManager
+
+        getContactsData()
+    }
+
+
+    private fun getContactsData() {
+        val retrofitBuilder = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(Constants.BASE_URL)
+            .build()
+            .create(Api::class.java)
+        val retrofitData = retrofitBuilder.getContactsData()
+
+        retrofitData.enqueue(object : Callback<List<ContactsModel>?> {
+            override fun onResponse(call: Call<List<ContactsModel>?>, response: Response<List<ContactsModel>?>) {
+                val responseBody = response.body()
+
+                listContactsAdapter = responseBody?.let {
+                    ListContactsAdapter(requireContext(),
+                        it
+                    )
+                }!!
+                listContactsAdapter.notifyDataSetChanged()
+                rvContacts.adapter = listContactsAdapter
+
+            }
+
+            override fun onFailure(call: Call<List<ContactsModel>?>, t: Throwable) {
+                Log.d("SIVAG :- Contacts RecyclerView", "onFailure: " + t.message)
+            }
+        })
+    }
 
     companion object {
         @JvmStatic
