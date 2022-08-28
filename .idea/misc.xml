@@ -3,12 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/drawable/circle_accent_border_white.xml" value="0.196" />
         <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/layout/fragment_login.xml" value="0.176" />
         <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/layout/fragment_register.xml" value="0.2" />
         <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/layout/fragment_userdashboard.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/layout/item_contacts.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/layout/item_login_layout.xml" value="0.25" />
         <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/layout/item_register_layout.xml" value="0.25" />
+        <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/layout/layout_toolbar.xml" value="0.24895833333333334" />
       </map>
     </option>
   </component>

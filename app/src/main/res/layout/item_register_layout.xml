@@ -131,6 +131,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginTop="30dp"
         android:gravity="center"
+        android:foreground="?attr/actionBarItemBackground"
         android:text="@string/already_have_an_account"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/dtvPasswordRegisterEt" />

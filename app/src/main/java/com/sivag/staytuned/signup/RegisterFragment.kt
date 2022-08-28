@@ -141,8 +141,8 @@ class RegisterFragment : BaseFragment() {
 
     private fun formValidation(): Boolean {
 
-        return !userFullName.isNullOrEmpty() || !userEmail.isNullOrEmpty() ||
-                Patterns.EMAIL_ADDRESS.matcher(userEmail).matches() || !userPassword.isNullOrEmpty() || userPassword.length > 6
+        return !userFullName.isNullOrEmpty() && !userEmail.isNullOrEmpty() &&
+                Patterns.EMAIL_ADDRESS.matcher(userEmail).matches() && !userPassword.isNullOrEmpty() && userPassword.length > 6
     }
 
     companion object {

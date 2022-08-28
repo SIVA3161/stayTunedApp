@@ -130,8 +130,10 @@ class LoginFragment : BaseFragment() {
 
     private fun loginFormValidation(): Boolean {
 
-        return !userLoginEmail.isNullOrEmpty() ||
-                Patterns.EMAIL_ADDRESS.matcher(userLoginEmail).matches() || !userLoginPassword.isNullOrEmpty() || !(userLoginPassword.length > 6)
+        return !userLoginEmail.isNullOrEmpty() &&
+                Patterns.EMAIL_ADDRESS.matcher(userLoginEmail).matches() &&
+                !userLoginPassword.isNullOrEmpty() &&
+                !(userLoginPassword.length > 6)
     }
 
     companion object {
