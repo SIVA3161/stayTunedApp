@@ -15,6 +15,14 @@
     <string name="password">Password</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="don_t_have_an_account_yet">Don\'t have an account, yet? \nRegister here</string>
+    <string name="enter_a_valid_email">Enter a valid email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="enter_registered_email">Enter registered email</string>
+    <string name="empty_fullname">Enter fullname to proceed</string>
+    <string name="empty_email">"Email is mandatory "</string>
+    <string name="empty_password">Password can\'t be blank</string>
+    <string name="invalid_email_address">Enter a valid Email address</string>
 
 
 </resources>
