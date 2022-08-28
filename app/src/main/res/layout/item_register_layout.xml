@@ -132,6 +132,6 @@
         android:gravity="center"
         android:text="@string/already_have_an_account"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/dtvPasswordLoginEt" />
+        app:layout_constraintTop_toBottomOf="@+id/dtvPasswordRegisterEt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

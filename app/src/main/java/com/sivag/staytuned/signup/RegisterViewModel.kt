@@ -2,10 +2,7 @@ package com.sivag.staytuned.signup
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.sivag.staytuned.database.RegisterEntity
 import com.sivag.staytuned.database.RegisterRepository
 import com.sivag.staytuned.databinding.ItemRegisterLayoutBinding
@@ -19,7 +16,7 @@ import kotlinx.coroutines.launch
  * email : sivaguru3161@gmail.com
  */
 
-class RegisterViewModel(private val repository: RegisterRepository, application: Application) : AndroidViewModel(application) {
+class RegisterViewModel(private val repository: RegisterRepository) : ViewModel() {
 
 
     private val viewModelJob = Job()
@@ -28,6 +25,8 @@ class RegisterViewModel(private val repository: RegisterRepository, application:
     val errorToastUsername: LiveData<Boolean>
         get() = _errorToastUsername
 
+    var userDetailsLiveData = MutableLiveData<Array<RegisterEntity>>()
+
     private fun insert(user: RegisterEntity): Job = viewModelScope.launch {
         repository.insert(user)
     }
@@ -35,10 +34,12 @@ class RegisterViewModel(private val repository: RegisterRepository, application:
     fun saveUserToRDB(userFullName: String, userEmail: String, userPassword: String) {
         uiScope.launch {
             val userEmails = repository.getUserEmail(userEmail)
+            Log.i("getUserEmails", "*****> $userEmails <*****")
             if (userEmails != null) {
                 _errorToastUsername.value = true
             } else {
                 insert(RegisterEntity(0,userFullName,userEmail, userPassword))
+                println("Sakthi:: All User's Database : ${repository.users.value.toString()}")
             }
         }
     }
