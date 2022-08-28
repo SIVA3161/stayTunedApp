@@ -7,11 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sivag.staytuned.Constants
 import com.sivag.staytuned.base.BaseFragment
 import com.sivag.staytuned.data.Api
 import com.sivag.staytuned.data.model.ContactsModel
-import com.sivag.staytuned.data.model.Data
 import com.sivag.staytuned.databinding.FragmentUserdashboardBinding
 import kotlinx.android.synthetic.main.fragment_userdashboard.*
 import retrofit2.Call
@@ -58,26 +56,22 @@ class UserDashboardFragment : BaseFragment() {
     private fun getContactsData() {
         val retrofitBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl("https://reqres.in/api/")
             .build()
             .create(Api::class.java)
         val retrofitData = retrofitBuilder.getContactsData()
 
-        retrofitData.enqueue(object : Callback<List<ContactsModel>?> {
-            override fun onResponse(call: Call<List<ContactsModel>?>, response: Response<List<ContactsModel>?>) {
+        retrofitData.enqueue(object : Callback<ContactsModel?> {
+            override fun onResponse(call: Call<ContactsModel?>, response: Response<ContactsModel?>) {
                 val responseBody = response.body()
 
-                listContactsAdapter = responseBody?.let {
-                    ListContactsAdapter(requireContext(),
-                        it
-                    )
-                }!!
+                listContactsAdapter = ListContactsAdapter(requireContext(),responseBody)
                 listContactsAdapter.notifyDataSetChanged()
                 rvContacts.adapter = listContactsAdapter
 
             }
 
-            override fun onFailure(call: Call<List<ContactsModel>?>, t: Throwable) {
+            override fun onFailure(call: Call<ContactsModel?>, t: Throwable) {
                 Log.d("SIVAG :- Contacts RecyclerView", "onFailure: " + t.message)
             }
         })

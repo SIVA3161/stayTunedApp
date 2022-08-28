@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.item_contacts.view.*
  * Created by Siva G Gurusamy on 28/Aug/2022
  * email : sivaguru3161@gmail.com
  */
-class ListContactsAdapter(private val context: Context, private val contactsList: List<ContactsModel>) : RecyclerView.Adapter<ListContactsAdapter.ViewHolder> () {
+class ListContactsAdapter(private val context: Context, private val contactsList: ContactsModel?) : RecyclerView.Adapter<ListContactsAdapter.ViewHolder> () {
 
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.rvTitle
@@ -34,10 +34,10 @@ class ListContactsAdapter(private val context: Context, private val contactsList
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text = contactsList[position].data.firstOrNull()?.getFullName()
-        holder.desc.text = contactsList[position].data.firstOrNull()?.email
+        holder.title.text = contactsList?.data?.firstOrNull()?.getFullName()
+        holder.desc.text = contactsList?.data?.firstOrNull()?.email
 
-        val url = contactsList[position].data.firstOrNull()?.avatar
+        val url = contactsList?.data?.firstOrNull()?.avatar
         //Coil is an image loading 3rd party library which helps us to perform various img customization operations
         holder.profileImg.load(url) {
             placeholder(R.drawable.bg_leaf_img)
@@ -47,6 +47,6 @@ class ListContactsAdapter(private val context: Context, private val contactsList
     }
 
     override fun getItemCount(): Int {
-        return contactsList.size
+        return contactsList?.data?.size?.toInt() ?: 0
     }
 }

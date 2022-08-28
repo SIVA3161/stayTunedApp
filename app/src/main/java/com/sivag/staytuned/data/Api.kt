@@ -10,8 +10,8 @@ import retrofit2.http.GET
  */
 interface Api {
 
-    @GET( "api/users" + "page=1")
-    fun getContactsData(): Call<List<ContactsModel>>
+    @GET( "users?page=1")
+    fun getContactsData(): Call<ContactsModel>
 
 
 }
