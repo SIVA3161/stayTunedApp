@@ -3,9 +3,6 @@ package com.sivag.staytuned
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sivag.staytuned.base.BaseActivity
 import com.sivag.staytuned.databinding.ActivityMainBinding
 

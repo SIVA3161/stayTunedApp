@@ -35,48 +35,56 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
 }
 
 dependencies {
 
-    def lifecycle_version = "2.2.0"
-    def room_version = "2.2.3"
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.5.0'
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
-    implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    def activityVersion = '1.5.1'
+    def appCompatVersion = '1.5.0'
+    def constraintLayoutVersion = '2.1.4'
+    def coreTestingVersion = '2.1.0'
+    def coroutines = '1.5.2'
+    def lifecycleVersion = '2.5.1'
+    def materialVersion = '1.6.1'
+    def roomVersion = '2.4.3'
+    // testing
+    def junitVersion = '4.13.2'
+    def espressoVersion = '3.4.0'
+    def androidxJunitVersion = '1.1.3'
 
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.activity:activity-ktx:$activityVersion"
 
-    // ViewModel
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    // LiveData
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    // Annotation processor
-    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+    // Room components
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
 
-    // Room
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    // Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
 
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation "androidx.room:room-ktx:$room_version"
+    // Kotlin components
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 
-    //coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
+    // UI
+    api "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    api "com.google.android.material:material:$materialVersion"
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'androidx.cardview:cardview:1.0.0'
+    // Testing
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    androidTestImplementation ("androidx.test.espresso:espresso-core:$espressoVersion", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+
 }
