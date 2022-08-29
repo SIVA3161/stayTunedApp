@@ -34,10 +34,10 @@ class ListContactsAdapter(private val context: Context, private val contactsList
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text = contactsList?.data?.firstOrNull()?.getFullName()
-        holder.desc.text = contactsList?.data?.firstOrNull()?.email
+        holder.title.text = contactsList?.data?.get(position)?.getFullName()
+        holder.desc.text = contactsList?.data?.get(position)?.email
 
-        val url = contactsList?.data?.firstOrNull()?.avatar
+        val url = contactsList?.data?.get(position)?.avatar
         //Coil is an image loading 3rd party library which helps us to perform various img customization operations
         holder.profileImg.load(url) {
             placeholder(R.drawable.bg_leaf_img)
