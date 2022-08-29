@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/drawable/circle_accent_border_white.xml" value="0.196" />
+        <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/drawable/circle_red_border_white.xml" value="0.1815" />
+        <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/drawable/circle_yellow_border_white.xml" value="0.1815" />
         <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/layout/fragment_login.xml" value="0.176" />
         <entry key="..\:/Users/siva/AndroidStudioProjects/Sakthi/MySpace/stayTunedKotlin/app/src/main/res/layout/fragment_register.xml" value="0.2" />
