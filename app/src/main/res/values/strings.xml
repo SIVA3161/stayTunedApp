@@ -24,6 +24,7 @@
     <string name="empty_password">Password can\'t be blank</string>
     <string name="invalid_email_address">Enter a valid Email address</string>
     <string name="contacts">Contacts</string>
+    <string name="profile_info">Profile</string>
 
 
 </resources>
