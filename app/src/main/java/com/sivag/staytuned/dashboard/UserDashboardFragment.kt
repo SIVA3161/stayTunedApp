@@ -1,11 +1,13 @@
 package com.sivag.staytuned.dashboard
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sivag.staytuned.base.BaseFragment
 import com.sivag.staytuned.data.Api
@@ -68,6 +70,22 @@ class UserDashboardFragment : BaseFragment() {
                 listContactsAdapter = ListContactsAdapter(requireContext(),responseBody)
                 listContactsAdapter.notifyDataSetChanged()
                 rvContacts.adapter = listContactsAdapter
+
+                listContactsAdapter.setOnItemClickListener(object : ListContactsAdapter.onItemClickListener{
+                    override fun onItemClick(position: Int) {
+                        val selectedItemFullName = responseBody?.data?.get(position)?.getFullName()
+                        val selectedItemAvatar = responseBody?.data?.get(position)?.avatar
+                        val selectedItemEmail = responseBody?.data?.get(position)?.email
+
+                        val detailViewIntent = Intent(context, DetailViewActivity::class.java)
+                        detailViewIntent.putExtra("fullname", selectedItemFullName)
+                        detailViewIntent.putExtra("avatar",selectedItemAvatar)
+                        detailViewIntent.putExtra("email",selectedItemEmail)
+                        startActivity(detailViewIntent)
+
+                    }
+
+                })
 
             }
 

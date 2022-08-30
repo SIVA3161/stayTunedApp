@@ -26,7 +26,9 @@
             </intent-filter>
         </activity>
 
-
+        <activity android:name=".dashboard.DetailViewActivity"
+            android:theme="@style/Theme.StayTunedKotlin"
+            android:exported="true"/>
     </application>
 
 </manifest>

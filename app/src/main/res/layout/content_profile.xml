@@ -26,9 +26,9 @@
 
                 <TextView
                     android:id="@+id/nameTextView"
-                    android:text="Name"
+                    style="@style/profileDetailsTextMain"
                     android:layout_toRightOf="@id/nameImageView"
-                style="@style/profileDetailsTextMain" />
+                    android:text="Name" />
 
                 <TextView
                     android:id="@+id/dtvUserFullName"
@@ -67,7 +67,7 @@
                     android:id="@+id/dtvUserEmailContent"
                     style="@style/profileDetailsMiniText"
                     android:layout_toRightOf="@id/emailImageView"
-                    android:text="siva@bluemoon.com" />
+                    tools:text="siva@bluemoon.com" />
 
             </RelativeLayout>
 
